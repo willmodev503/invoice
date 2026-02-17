@@ -65,8 +65,6 @@ export async function createInvoice(prevState: State, formData: FormData) {
 // Use Zod to update the expected types
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
  
-// ...
- 
 export async function updateInvoice(
   id: string, 
   prevState: State,
@@ -94,9 +92,7 @@ const validatedFields = UpdateInvoice.safeParse({
     WHERE id = ${id}
   `;
    } catch (error) {
-
-        console.error(error);
-  throw new Error('Database Error: Failed to update Invoice.');
+    return { message: 'Database Error: Failed to Update Invoice.' };
   }
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
