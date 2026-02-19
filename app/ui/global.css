@@ -16,3 +16,35 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+
+  --primary: 255 75% 45%;
+  --primary-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  --success: 142 71% 45%;
+  --warning: 35 92% 50%;
+
+  --border: 214 32% 91%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+
+  --primary: 255 75% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --destructive: 0 63% 40%;
+  --destructive-foreground: 0 0% 100%;
+
+  --success: 142 60% 40%;
+  --warning: 35 85% 55%;
+}
