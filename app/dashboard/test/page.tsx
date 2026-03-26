@@ -1,7 +1,7 @@
 import { prisma } from '@/app/lib/prisma';
 import { extractVariables } from '@/app/lib/templateEngine';
 import DynamicForm from './form';
-
+export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const template = await prisma.template.findFirst();
