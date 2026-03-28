@@ -6,6 +6,22 @@ import { redirect } from 'next/navigation';
 import postgres from 'postgres';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { prisma } from '@/app/lib/prisma';
+import { renderTemplate } from '@/app/lib/templateEngine';
+
+export async function createContract(templateId: number, template: string, data: any) {
+  const generatedText = renderTemplate(template, data);
+
+  const contract = await prisma.contract.create({
+    data: {
+      templateId,
+      data,
+      generatedText,
+    },
+  });
+
+  return contract;
+}
 
 
 export async function authenticate(

@@ -15,6 +15,7 @@ export default async function Page() {
       <h1>Generador de contrato</h1>
 
       <DynamicForm
+       templateId={template.id}
         template={template.content}
         variables={variables}
       />

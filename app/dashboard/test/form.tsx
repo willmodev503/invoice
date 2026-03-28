@@ -2,20 +2,33 @@
 
 import { useState } from 'react';
 import { renderTemplate } from '@/app/lib/templateEngine';
+import { createContract } from '@/app/lib/actions';
+
 
 type Props = {
+   templateId: number;
   template: string;
   variables: string[];
 };
 
-export default function DynamicForm({ template, variables }: Props) {
-  const [formData, setFormData] = useState<Record<string, string>>({});
+export default function DynamicForm({ templateId, template, variables }: Props) {
+   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (key: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [key]: value,
     }));
+  };
+
+   const handleSubmit = async () => {
+    setLoading(true);
+
+    await createContract(templateId, template, formData);
+
+    setLoading(false);
+    alert('Contrato guardado ✅');
   };
 
   const result = renderTemplate(template, formData);
@@ -37,6 +50,13 @@ export default function DynamicForm({ template, variables }: Props) {
 
       <h2 className="text-xl font-bold mt-6">Preview</h2>
       <pre className="bg-gray-100 p-4">{result}</pre>
+       <button
+        onClick={handleSubmit}
+        disabled={loading}
+        className="bg-blue-500 text-white p-2 rounded"
+      >
+        {loading ? 'Guardando...' : 'Generar contrato'}
+      </button>
     </div>
   );
 }
