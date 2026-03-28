@@ -25,6 +25,8 @@ export async function GET(
 
   let y = height - 50;
 
+
+
   // 🧾 TÍTULO
   page.drawText('CONTRATO', {
     x: width / 2 - 60,
@@ -34,6 +36,9 @@ export async function GET(
   });
 
   y -= 40;
+
+
+
 
   // 📄 CONTENIDO (con saltos de línea)
   const text = contract.generatedText || 'Sin contenido';
@@ -69,6 +74,31 @@ export async function GET(
     size: 10,
     font,
   });
+
+  
+try {
+  const imageUrl = 'https://img.freepik.com/vector-gratis/vector-diseno-degradado-colorido-pajaro_343694-2506.jpg';
+
+  const res = await fetch(imageUrl);
+
+  if (!res.ok) {
+    throw new Error('Error cargando imagen');
+  }
+
+  const imageBytes = await res.arrayBuffer();
+
+  const image = await pdfDoc.embedJpg(imageBytes);
+let y = height - 50;
+  page.drawImage(image, {
+    x: 50,
+    y: height - 40,
+    width: 80,
+    height: 50,
+  });
+y -= 80;
+} catch (error) {
+  console.error("Error cargando logo:", error);
+}
 
   // 📅 FECHA
   const date = new Date(contract.createdAt).toLocaleDateString();
