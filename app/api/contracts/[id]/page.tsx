@@ -52,6 +52,12 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         <h2 className="font-semibold">Fecha</h2>
         <p>{new Date(contract.createdAt).toLocaleString()}</p>
       </div>
+      <a
+  href={`/api/contracts/${contract.id}/pdf`}
+  className="bg-green-600 text-white px-4 py-2 rounded inline-block"
+>
+  Descargar PDF
+</a>
     </div>
   );
 }

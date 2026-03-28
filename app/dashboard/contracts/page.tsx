@@ -39,7 +39,7 @@ export default async function Page() {
 
            <td className="p-2 border">
   <Link
-    href={`/dashboard/contracts/${contract.id}`}
+    href={`/api/contracts/${contract.id}`}
     className="text-blue-500 underline"
   >
     {contract.generatedText.slice(0, 50)}...
