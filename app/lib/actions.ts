@@ -9,6 +9,28 @@ import { AuthError } from 'next-auth';
 import { prisma } from '@/app/lib/prisma';
 import { renderTemplate } from '@/app/lib/templateEngine';
 
+
+//contracts and templates
+
+export async function createTemplate(name: string, content: string) {
+  return await prisma.template.create({
+    data: {
+      name,
+      content,
+    },
+  });
+}
+
+export async function updateTemplate(id: number, name: string, content: string) {
+  return await prisma.template.update({
+    where: { id },
+    data: {
+      name,
+      content,
+    },
+  });
+}
+
 export async function createContract(templateId: number, template: string, data: any) {
   const generatedText = renderTemplate(template, data);
 
@@ -23,6 +45,8 @@ export async function createContract(templateId: number, template: string, data:
   return contract;
 }
 
+
+//authentication next auth
 
 export async function authenticate(
   prevState: string | undefined,
@@ -42,6 +66,8 @@ export async function authenticate(
     throw error;
   }
 }
+
+// invoices
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
  
