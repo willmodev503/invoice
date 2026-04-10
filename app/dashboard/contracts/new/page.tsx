@@ -5,6 +5,11 @@ import Layout from "@/app/ui/components/Layout";
 import DynamicForm from "@/app/ui/components/forms/form";
 import { renderTemplate, extractVariables } from "@/app/lib/templateEngine";
 import { createContract } from '@/app/lib/actions';
+import ContractPreview from "@/app/ui/components/ContractPreview";
+import html2pdf from "html2pdf.js";
+
+
+
 
 export default function NewContract() {
   const [step, setStep] = useState(1);
@@ -16,7 +21,23 @@ const [formData, setFormData] = useState<any>(null);
 const [generatedText, setGeneratedText] = useState("");
   const [variables, setVariables] = useState<string[]>([]);
 
-  
+async function downloadPDF() {
+  const element = document.getElementById("pdf-content");
+
+  if (!element) return;
+
+  const html2pdf = (await import("html2pdf.js")).default;
+
+html2pdf()
+  .set({
+    margin: 10,
+    filename: "contrato.pdf",
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { format: "a4", orientation: "portrait" },
+  })
+  .from(element)
+  .save();
+}
 
   // 🔥 cargar templates desde DB
   useEffect(() => {
@@ -135,7 +156,9 @@ async function handleSave() {
     <h2 className="text-xl mb-4">Vista previa</h2>
 
     <pre className="bg-gray-100 p-4 whitespace-pre-wrap">
-      {generatedText}
+    <div id="pdf-content">
+  <ContractPreview text={generatedText} />
+</div>
     </pre>
 
     <button
@@ -144,6 +167,13 @@ async function handleSave() {
     >
       Guardar contrato
     </button>
+
+    <button
+  onClick={downloadPDF}
+  className="bg-blue-500 text-white px-4 py-2 mt-4"
+>
+  Descargar PDF
+</button>
   </div>
 )}
 

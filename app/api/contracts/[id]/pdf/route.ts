@@ -43,7 +43,7 @@ export async function GET(
   // 📄 CONTENIDO (con saltos de línea)
   const text = contract.generatedText || 'Sin contenido';
 
-  const lines = wrapText(text, 80);
+  const lines = wrapText(text, 180);
 
   lines.forEach((line) => {
     page.drawText(line, {
