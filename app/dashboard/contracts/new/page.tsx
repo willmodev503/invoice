@@ -6,6 +6,7 @@ import DynamicForm from "@/app/ui/components/forms/form";
 import { renderTemplate, extractVariables } from "@/app/lib/templateEngine";
 import { createContract } from '@/app/lib/actions';
 import ContractPreview from "@/app/ui/components/ContractPreview";
+import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import html2pdf from "html2pdf.js";
 
 
@@ -113,6 +114,16 @@ async function handleSave() {
 
   return (
     <Layout>
+        <Breadcrumbs
+              breadcrumbs={[
+                { label: 'Contracts', href: '/dashboard/contracts' },
+                {
+                  label: 'Create Contracts',
+                  href: '/dashboard/contracts/new',
+                  active: true,
+                },
+              ]}
+            />
       <h1 className="text-2xl font-bold mb-4">Nuevo Contrato</h1>
 
       <div className="bg-white p-6 rounded shadow">
