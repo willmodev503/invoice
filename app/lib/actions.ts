@@ -46,6 +46,29 @@ export async function createContract(templateId: number, template: string, data:
 }
 
 
+// 🗑 borrar contrato
+export async function deleteContract(id: number) {
+  await prisma.contract.delete({
+    where: { id },
+  });
+}
+
+// 🗑 borrar template (con protección)
+export async function deleteTemplate(id: number) {
+  const contracts = await prisma.contract.count({
+    where: { templateId: id },
+  });
+
+  if (contracts > 0) {
+    throw new Error("No puedes borrar un template con contratos");
+  }
+
+  await prisma.template.delete({
+    where: { id },
+  });
+}
+
+
 //authentication next auth
 
 export async function authenticate(

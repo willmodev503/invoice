@@ -1,6 +1,72 @@
+"use client";
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { deleteInvoice } from '@/app/lib/actions';
+import { deleteContract } from "@/app/lib/actions";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { deleteTemplate } from "@/app/lib/actions";
+
+
+export function DeleteTemplateButton({ id }: { id: number }) {
+  const router = useRouter();
+
+  async function handleDelete() {
+    const ok = confirm("¿Eliminar template?");
+    if (!ok) return;
+
+    try {
+      await deleteTemplate(id);
+
+      toast.success("Template eliminado ✅");
+
+      router.refresh(); // 🔥 sin reload
+    } catch (error: any) {
+      toast.error(error.message || "Error ❌");
+    }
+  }
+
+  return (
+    <button
+      onClick={handleDelete}
+      className="bg-red-500 text-white px-3 py-1 rounded"
+    >
+      Eliminar
+    </button>
+  );
+}
+
+
+
+
+export function DeleteContractButton({ id }: { id: number }) {
+  const router = useRouter();
+
+  async function handleDelete() {
+    const ok = confirm("¿Eliminar contrato?");
+    if (!ok) return;
+
+    try {
+      await deleteContract(id);
+
+      toast.success("Contrato eliminado ✅");
+
+      router.refresh(); // 🔥 magia aquí
+    } catch (error) {
+      toast.error("Error ❌");
+    }
+  }
+
+  return (
+    <button
+      onClick={handleDelete}
+      className="bg-red-500 text-white px-3 py-1 rounded"
+    >
+      Eliminar
+    </button>
+  );
+}
+
 
 export function CreateInvoice() {
   return (

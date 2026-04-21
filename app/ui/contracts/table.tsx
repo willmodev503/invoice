@@ -1,9 +1,13 @@
+
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
+import { UpdateInvoice, DeleteInvoice,DeleteContractButton } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { prisma } from '@/app/lib/prisma';
 import Link from 'next/link';
+
+
+
 
 export default async function ContractsTable() {
   const contracts = await prisma.contract.findMany({
@@ -120,6 +124,7 @@ export default async function ContractsTable() {
                     <div className="flex justify-end gap-3">
                       {/* <UpdateInvoice id={invoice.id} />
                       <DeleteInvoice id={invoice.id} /> */}
+<DeleteContractButton id={contract.id}/>
                     </div>
                   </td>
                 </tr>
