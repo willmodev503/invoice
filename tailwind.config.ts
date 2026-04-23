@@ -15,11 +15,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+  'main-gradient': 'var(--gradient-main)',
+},
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',
       },
       colors: {
-     background: 'hsl(var(--background))',
+     background: 'hsl(var(--background))',//       'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
 
         primary: {

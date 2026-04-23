@@ -22,22 +22,22 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
  
   return <form action={formAction}>
     
-      <div className="rounded-md bg-gray-50 p-4 md:p-6">
+      <div className="rounded-md bg-main-gradient text-foreground p-4 md:p-6">
         {/* Customer Name */}
-        <div className="mb-4">
-          <label htmlFor="customer" className="mb-2 block text-sm font-medium">
+        <div className="mb-4 ">
+          <label htmlFor="customer" className="mb-2 block text-sm font-medium text-white">
             Choose customer
           </label>
           <div className="relative">
             <select
               id="customer"
               name="customerId"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-500"
               defaultValue=""
                         aria-describedby="customer-error"
 
             >
-              <option value="" disabled>
+              <option  value="" disabled>
                 Select a customer
               </option>
               {customers.map((customer) => (
@@ -61,7 +61,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
 
         {/* Invoice Amount */}
         <div className="mb-4">
-          <label htmlFor="amount" className="mb-2 block text-sm font-medium">
+          <label htmlFor="amount" className="mb-2 block text-white text-sm font-medium">
             Choose an amount
           </label>
           <div className="relative mt-2 rounded-md">
@@ -81,7 +81,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
 
         {/* Invoice Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">
+          <legend className="mb-2 block text-sm text-white font-medium">
             Set the invoice status
           </legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
@@ -123,7 +123,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className="flex h-10 items-center rounded-lg bg-warning px-4 text-sm text-foreground font-medium text-gray-600 transition-colors hover:bg-destructive text-white"
         >
           Cancel
         </Link>

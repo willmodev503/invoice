@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Layout from "@/app/ui/components/Layout";
-import DynamicForm from "@/app/ui/components/forms/form";
+import DynamicForm from "@/app/ui/forms/form";
 import { renderTemplate, extractVariables } from "@/app/lib/templateEngine";
 import { createContract } from '@/app/lib/actions';
 import ContractPreview from "@/app/ui/components/ContractPreview";
@@ -126,19 +126,19 @@ async function handleSave() {
             />
       <h1 className="text-2xl font-bold mb-4">Nuevo Contrato</h1>
 
-      <div className="bg-white p-6 rounded shadow">
+      <div className="bg-main-gradient p-6 rounded shadow text-white">
 
         {/* STEP 1 */}
         {step === 1 && (
           <div>
             <h2 className="text-xl mb-4">Selecciona plantilla</h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 bg-main-gradient gap-4">
               {templates.map((t) => (
                 <button
                   key={t.id}
                   onClick={() => handleSelectTemplate(t)}
-                  className="border p-4 hover:bg-gray-100"
+                  className="border p-4 hover:bg-secondary hover:text-foreground"
                 >
                   {t.name}
                 </button>

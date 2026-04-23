@@ -3,6 +3,7 @@ import { prisma } from "@/app/lib/prisma";
 import Link from "next/link";
 import {DeleteTemplateButton} from "@/app/ui/invoices/buttons";
 import Image from 'next/image';
+import { PencilIcon} from '@heroicons/react/24/outline';
 
 export default async function TemplatesPage() {
   const templates = await prisma.template.findMany();
@@ -21,12 +22,12 @@ export default async function TemplatesPage() {
       </Link>
        <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
+        <div className="rounded-lg bg-main-gradient text-white p-2 md:pt-0">
           <div className="md:hidden">
             {templates?.map((t) => (
               <div
                 key={t.id}
-                className="mb-2 w-full rounded-md bg-white p-4"
+                className="mb-2 w-full rounded-md bg-background p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
@@ -58,7 +59,7 @@ export default async function TemplatesPage() {
 
               className="text-blue-500"
             >
-              Editar
+            <PencilIcon className="w-5" />
             </Link>
 
                 <DeleteTemplateButton id={t.id}/>
@@ -67,7 +68,7 @@ export default async function TemplatesPage() {
               </div>
             ))}
           </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
+          <table className="hidden min-w-full bg-main-gradient text-white md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
@@ -82,7 +83,7 @@ export default async function TemplatesPage() {
            
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="bg-background text-foreground">
               {templates?.map((t) => (
                 <tr
                   key={t.id}
@@ -115,7 +116,7 @@ export default async function TemplatesPage() {
 
               className="text-blue-500"
             >
-              Editar
+           <PencilIcon className="w-5" />
             </Link>
             
 <DeleteTemplateButton id={t.id}/>

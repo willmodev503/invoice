@@ -22,12 +22,12 @@ export default async function ContractsTable() {
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
+        <div className="rounded-lg bg-main-gradient  p-2 md:pt-0">
           <div className="md:hidden">
             {contracts?.map((contract) => (
               <div
                 key={contract.id}
-                className="mb-2 w-full rounded-md bg-white p-4"
+                className="mb-2 w-full rounded-md bg-background p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
@@ -68,7 +68,7 @@ export default async function ContractsTable() {
             ))}
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal">
+            <thead className="rounded-lg text-left text-white text-sm font-normal">
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   ID
@@ -87,7 +87,7 @@ export default async function ContractsTable() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="bg-background text-foreground">
               {contracts?.map((contract) => (
                 <tr
                   key={contract.id}
@@ -109,12 +109,12 @@ export default async function ContractsTable() {
                  {contract.template.name}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                   <Link
-    href={`/api/contracts/${contract.id}`}
-    className="text-blue-500 underline"
+                   <p
+    //href={`/api/contracts/${contract.id}`}
+   // className="text-blue-500 underline"
   >
     {contract.generatedText.slice(0, 50)}...
-  </Link>
+  </p>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                   {new Date(contract.createdAt).toLocaleString()}

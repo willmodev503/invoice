@@ -31,7 +31,7 @@ export function DeleteTemplateButton({ id }: { id: number }) {
       onClick={handleDelete}
       className="bg-red-500 text-white px-3 py-1 rounded"
     >
-      Eliminar
+      <TrashIcon className="w-5" />
     </button>
   );
 }
@@ -60,9 +60,9 @@ export function DeleteContractButton({ id }: { id: number }) {
   return (
     <button
       onClick={handleDelete}
-      className="bg-red-500 text-white px-3 py-1 rounded"
+      className="bg-background text-primary px-3 py-1 rounded hover:bg-destructive hover:text-white"
     >
-      Eliminar
+      <TrashIcon className="w-5" />
     </button>
   );
 }

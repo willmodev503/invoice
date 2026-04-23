@@ -10,7 +10,7 @@ import { prisma } from '@/app/lib/prisma';
 import { renderTemplate } from '@/app/lib/templateEngine';
 
 
-//contracts and templates
+//templates
 
 export async function createTemplate(name: string, content: string) {
   return await prisma.template.create({
@@ -30,6 +30,23 @@ export async function updateTemplate(id: number, name: string, content: string) 
     },
   });
 }
+
+// 🗑 borrar template (con protección)
+export async function deleteTemplate(id: number) {
+  const contracts = await prisma.contract.count({
+    where: { templateId: id },
+  });
+
+  if (contracts > 0) {
+    throw new Error("No puedes borrar un template con contratos");
+  }
+
+  await prisma.template.delete({
+    where: { id },
+  });
+}
+
+//contract
 
 export async function createContract(templateId: number, template: string, data: any) {
   const generatedText = renderTemplate(template, data);
@@ -53,20 +70,7 @@ export async function deleteContract(id: number) {
   });
 }
 
-// 🗑 borrar template (con protección)
-export async function deleteTemplate(id: number) {
-  const contracts = await prisma.contract.count({
-    where: { templateId: id },
-  });
 
-  if (contracts > 0) {
-    throw new Error("No puedes borrar un template con contratos");
-  }
-
-  await prisma.template.delete({
-    where: { id },
-  });
-}
 
 
 //authentication next auth
