@@ -23,13 +23,13 @@ export default async function TemplatesPage() {
        <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-main-gradient text-white p-2 md:pt-0">
-          <div className="md:hidden">
+          <div className="md:hidden ">
             {templates?.map((t) => (
               <div
                 key={t.id}
-                className="mb-2 w-full rounded-md bg-background p-4"
+                className="mb-2 w-full rounded-md bg-background text-foreground p-4"
               >
-                <div className="flex items-center justify-between border-b pb-4">
+                <div className="flex items-center justify-between border-b pb-4 bg-background">
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
