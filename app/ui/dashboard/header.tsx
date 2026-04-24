@@ -28,9 +28,9 @@ export default function Header() {
     <header className="flex items-center justify-between px-6 py-4 rounded-md bg-main-gradient text-white shadow-soft">
       
       {/* Título */}
-      <h1 className="text-lg font-semibold tracking-tight">
+      {/* <h1 className="text-lg font-semibold tracking-tight">
         theme
-      </h1>
+      </h1> */}
 
       {/* Toggle */}
       <button
