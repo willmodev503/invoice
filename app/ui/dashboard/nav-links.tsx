@@ -19,7 +19,7 @@ const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   {name: 'Invoices',href: '/dashboard/invoices',icon: DocumentCurrencyDollarIcon},
   { name: 'Contracts', href: '/dashboard/contracts', icon: DocumentTextIcon },
-
+ { name: 'Evidences', href: '/dashboard/evidences', icon: DocumentTextIcon },
 ];
 
 export default function NavLinks() {
