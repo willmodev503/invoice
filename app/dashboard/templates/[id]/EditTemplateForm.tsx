@@ -19,13 +19,13 @@ export default function EditTemplateForm({ template }: any) {
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="border p-2 w-full mb-4"
+        className="border text-black p-2 w-full mb-4"
       />
 
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="border p-2 w-full h-40 mb-4"
+        className="border text-black p-2 w-full h-40 mb-4"
       />
 
       <button

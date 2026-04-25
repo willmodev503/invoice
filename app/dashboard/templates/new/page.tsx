@@ -24,14 +24,14 @@ export default function NewTemplatePage() {
         placeholder="Ingresa el Nombre de la plantilla"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="border p-2 w-full mb-4"
+        className="border text-black p-2 w-full mb-4"
       />
 
       <textarea
         placeholder="Ingresa el Contenido de la plantilla y para el contenido variable encierra en doble llave con nombres descriptivos para los campos ej: nombre del comprador (usa {{nombre.comprador}})"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="border p-2 w-full h-40 mb-4"
+        className="border text-black p-2 w-full h-40 mb-4"
       />
 
       <button
