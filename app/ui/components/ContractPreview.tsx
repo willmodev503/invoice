@@ -4,7 +4,7 @@ type Props = {
 
 export default function ContractPreview({ text }: Props) {
   return (
-    <div className="p-10 bg-white text-black max-w-[800px] mx-auto">
+    <div className="bg-muted text-foreground p-4 rounded-md whitespace-pre-wrap break-words">
       
       {/* LOGO */}
       <img
