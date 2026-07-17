@@ -3,65 +3,75 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function NewEvidence() {
+export default function UploadEvidence() {
   const [file, setFile] = useState<File | null>(null);
-  const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleUpload() {
-    if (!file) return;
-    
+    if (!file) {
+      toast.error("Selecciona un archivo");
+      return;
+    }
 
-    const formData = new FormData();
-    formData.append("file", file);
+    if (loading) return; // 🔥 evita doble click
 
     try {
-      // 1️⃣ subir archivo
+      setLoading(true);
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      // 1️⃣ subir a cloudinary
       const uploadRes = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
 
       const uploadData = await uploadRes.json();
-      console.log(uploadData);
+
+      if (!uploadRes.ok) throw new Error("Error subiendo archivo");
 
       // 2️⃣ guardar en DB
-      await fetch("/api/evidences", {
+      const saveRes = await fetch("/api/evidences", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title,
+          title: file.name,
           fileUrl: uploadData.url,
           fileType: uploadData.type,
         }),
       });
 
-      toast.success("Evidencia subida ✅");
-    } catch {
-      toast.error("Error ❌");
+      if (!saveRes.ok) throw new Error("Error guardando en DB");
+
+      toast.success("Archivo subido correctamente ✅");
+
+      setFile(null); // reset
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message || "Error ❌");
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <div >
-      <h1>Subir evidencia</h1>
-
+    <div className="space-y-4">
       <input
-      className="text-black"
-        type="text"
-        placeholder="Evento"
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      <input
-      className="text-black"
         type="file"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
       />
 
-      <button onClick={handleUpload}>
-        Subir
+      <button
+        onClick={handleUpload}
+        disabled={loading}
+        className={`px-4 py-2 text-white rounded ${
+          loading ? "bg-gray-400" : "bg-blue-500"
+        }`}
+      >
+        {loading ? "Subiendo..." : "Subir archivo"}
       </button>
     </div>
   );

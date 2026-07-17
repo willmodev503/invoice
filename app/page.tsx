@@ -21,7 +21,7 @@ export default function Page() {
      <div/>
   <p
       className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
-    >            <strong>Bienvenido a mi portafolio</strong> Sientete libre de  explorar{' '}
+    >            <strong>Bienvenido </strong>
           
           </p>
           <Link
@@ -36,15 +36,14 @@ export default function Page() {
   <main className="flex flex-col justify-center px-6 md:px-20 bg-white">
       <div className="max-w-4xl">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-          Soy <span className="text-blue-600">Neokaos</span>
+           <span className="text-blue-600"></span>
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl">
-          Fullstack Developer especializado en construir aplicaciones web
-          modernas, rápidas y escalables utilizando React, Next.js y Node.js.
+       El CRM que te hacia Falta, Sube Archivos, Edita y Guarda Contratos y Factura Electronica
         </p>
 
-        <div className="mt-8 flex gap-4">
+        {/* <div className="mt-8 flex gap-4">
           <a
             href="/dashboard"
             className="rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-500 transition"
@@ -58,7 +57,7 @@ export default function Page() {
           >
             📩 Contactarme
           </a>
-        </div>
+        </div> */}
       </div>
     </main>
         </div>
