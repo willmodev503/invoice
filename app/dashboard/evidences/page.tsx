@@ -34,7 +34,7 @@ export default async function Page() {
           <a href={e.fileUrl} target="_blank">
             Ver archivo
           </a>
-           <DeleteEvidenceButton id={evidence.id} />
+           <DeleteEvidenceButton id={e.id} />
         </div>
       ))}
     </div>
