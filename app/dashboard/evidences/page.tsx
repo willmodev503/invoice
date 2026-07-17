@@ -15,7 +15,7 @@ export default async function Page() {
   {evidences.map((e) => (
     <div
       key={e.id}
-      className="rounded-lg border bg-white p-4 shadow-sm flex justify-between items-center"
+      className="rounded-lg border bg-main-gradient p-4 shadow-sm flex justify-between items-center"
     >
       <div className="flex gap-4 items-center">
         {e.fileType === "image" ? (
@@ -27,7 +27,7 @@ export default async function Page() {
             className="rounded object-cover w-20 h-20"
           />
         ) : (
-          <div className="w-20 h-20 rounded bg-gray-100 flex items-center justify-center text-3xl">
+          <div className="w-20 h-20 rounded bg-main-gradient flex items-center justify-center text-3xl">
             📄
           </div>
         )}
