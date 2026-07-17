@@ -36,11 +36,11 @@ export default function LoginForm() {
           </p>
         </div>
 
-        {/* Demo credentials */}
+        {/* Demo credentials
         <div className="rounded-lg bg-gray-50 p-4 text-sm text-gray-600 border border-gray-100">
           <p><span className="font-medium">Email:</span> user@nextmail.com</p>
           <p><span className="font-medium">Password:</span> 123456</p>
-        </div>
+        </div> */}
 
         {/* Email */}
         <div>
