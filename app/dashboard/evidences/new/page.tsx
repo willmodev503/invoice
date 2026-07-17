@@ -40,6 +40,7 @@ export default function UploadEvidence() {
         body: JSON.stringify({
           title: file.name,
           fileUrl: uploadData.url,
+          publicId: uploadData.publicId,
           fileType: uploadData.type,
         }),
       });

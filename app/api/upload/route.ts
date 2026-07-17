@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 
   return NextResponse.json({
     url: result.secure_url,
+    publicId: result.public_id,
     type: result.resource_type,
   });
 }

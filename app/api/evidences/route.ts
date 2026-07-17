@@ -7,6 +7,7 @@ export async function POST(req: Request) {
     data: {
       title: body.title,
       fileUrl: body.fileUrl,
+      publicId: body.publicId, 
       fileType: body.fileType,
     },
   });
