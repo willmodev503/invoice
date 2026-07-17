@@ -31,9 +31,14 @@ export default function LoginForm() {
           <h1 className={`${lusitana.className} text-3xl font-semibold text-gray-900`}>
             Bienvenido
           </h1>
-          <p className="mt-2 text-sm text-gray-500">
+          {/* <p className="mt-2 text-sm text-gray-500">
             Para ingresar usa las credenciales de prueba siguientes
+          </p> */}
+
+          <p className="mt-2 text-sm text-gray-500">
+           Ingresa con tus credenciales
           </p>
+
         </div>
 
         {/* Demo credentials

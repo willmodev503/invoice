@@ -196,3 +196,17 @@ export async function deleteInvoice(id: string) {
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath('/dashboard/invoices');
 }
+
+
+//evidencias
+
+export async function deleteEvidence(id: number) {
+  await prisma.evidence.delete({
+    where: {
+      id,
+    },
+  });
+
+  revalidatePath("/dashboard/evidences");
+}
+

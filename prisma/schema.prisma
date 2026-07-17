@@ -67,6 +67,7 @@ model Evidence {
   id        Int      @id @default(autoincrement())
   title     String   // nombre del evento (ej: "Instalación AC")
   fileUrl   String   // URL del archivo (Cloudinary, S3, etc)
+  publicId  String   // ID que utiliza cloudinary
   fileType  String   // image | pdf | etc
   createdAt DateTime @default(now())
 }

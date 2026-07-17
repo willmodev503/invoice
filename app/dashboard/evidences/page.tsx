@@ -1,5 +1,6 @@
 import { prisma } from "@/app/lib/prisma";
 import Link from 'next/link';
+import DeleteEvidenceButton from "@/app/ui/evidences/buttons";
 
 export default async function Page() {
   const evidences = await prisma.evidence.findMany({
@@ -33,6 +34,7 @@ export default async function Page() {
           <a href={e.fileUrl} target="_blank">
             Ver archivo
           </a>
+           <DeleteEvidenceButton id={evidence.id} />
         </div>
       ))}
     </div>
