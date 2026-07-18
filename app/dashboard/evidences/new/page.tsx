@@ -1,11 +1,15 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+
+
 export default function UploadEvidence() {
+    const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+
 
   async function handleUpload() {
     if (!file) {
@@ -48,8 +52,10 @@ export default function UploadEvidence() {
       if (!saveRes.ok) throw new Error("Error guardando en DB");
 
       toast.success("Archivo subido correctamente ✅");
-      router.push("/dashboard/evidences");
-router.refresh();
+      
+
+
+router.push("/dashboard/evidences"); 
 
       setFile(null); // reset
     } catch (error: any) {
