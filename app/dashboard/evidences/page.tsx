@@ -33,7 +33,7 @@ export default async function Page() {
         )}
 
         <div>
-          <h2 className="font-bold text-lg">{e.title}</h2>
+          <h2 className="font-bold text-white text-lg">{e.title}</h2>
 
           <p className="text-sm text-gray-500">
             {new Date(e.createdAt).toLocaleString()}
