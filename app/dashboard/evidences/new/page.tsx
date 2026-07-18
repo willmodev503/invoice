@@ -48,6 +48,8 @@ export default function UploadEvidence() {
       if (!saveRes.ok) throw new Error("Error guardando en DB");
 
       toast.success("Archivo subido correctamente ✅");
+      router.push("/dashboard/evidences");
+router.refresh();
 
       setFile(null); // reset
     } catch (error: any) {

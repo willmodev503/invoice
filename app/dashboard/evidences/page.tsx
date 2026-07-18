@@ -2,13 +2,14 @@ import { prisma } from "@/app/lib/prisma";
 import Link from 'next/link';
 import DeleteEvidenceButton from "@/app/ui/evidences/buttons";
 import Image from "next/image";
+ export const dynamic = "force-dynamic";
 
 export default async function Page() {
   const evidences = await prisma.evidence.findMany({
     orderBy: { createdAt: "desc" },
   });
 
-  export const dynamic = "force-dynamic";
+ 
 
   return (
   <div className="grid gap-4 mt-6">
