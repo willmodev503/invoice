@@ -8,7 +8,7 @@ export default async function Page() {
     orderBy: { createdAt: "desc" },
   });
 
-  
+  export const dynamic = "force-dynamic";
 
   return (
   <div className="grid gap-4 mt-6">
