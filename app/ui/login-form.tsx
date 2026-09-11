@@ -11,6 +11,7 @@ import { Button } from './button';
 import { useActionState } from 'react';
 import { authenticate } from '@/app/lib/actions';
 import { useSearchParams } from 'next/navigation';
+import DemoButton from './demo/button';
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
@@ -38,6 +39,7 @@ export default function LoginForm() {
           <p className="mt-2 text-sm text-gray-500">
            Ingresa con tus credenciales
           </p>
+          
 
         </div>
 
@@ -92,6 +94,7 @@ export default function LoginForm() {
           {isPending ? 'Logging in...' : 'Log in'}
           {!isPending && <ArrowRightIcon className="h-4 w-4" />}
         </Button>
+        <DemoButton/>
 
         {/* Error */}
         {errorMessage && (
