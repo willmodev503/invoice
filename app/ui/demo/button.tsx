@@ -8,6 +8,8 @@ async function handleDemo() {
 
   const data = await response.json();
 
+  document.cookie = `demoSessionId=${data.sessionId}; path=/`;
+
   console.log("Demo session:", data.sessionId);
 }
 

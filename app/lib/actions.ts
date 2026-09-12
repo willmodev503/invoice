@@ -8,6 +8,7 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { prisma } from '@/app/lib/prisma';
 import { renderTemplate } from '@/app/lib/templateEngine';
+import { getDemoSession } from '@/app/lib/demoSession';
 
 
 //templates
@@ -48,7 +49,27 @@ export async function deleteTemplate(id: number) {
 
 //contract
 
-export async function createContract(templateId: number, template: string, data: any) {
+export async function createContract(
+  templateId: number,
+  template: string,
+  data: any
+) {
+  const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    const contractCount = await prisma.contract.count({
+      where: {
+        demoSessionId: demoSession.id,
+      },
+    });
+
+    if (contractCount >= 2) {
+      throw new Error(
+        "Has alcanzado el límite de 2 contratos de la demo."
+      );
+    }
+  }
+
   const generatedText = renderTemplate(template, data);
 
   const contract = await prisma.contract.create({
@@ -56,6 +77,9 @@ export async function createContract(templateId: number, template: string, data:
       templateId,
       data,
       generatedText,
+      ...(demoSession && {
+        demoSessionId: demoSession.id,
+      }),
     },
   });
 
@@ -209,4 +233,8 @@ export async function deleteEvidence(id: number) {
 
   revalidatePath("/dashboard/evidences");
 }
+
+// demo
+
+
 

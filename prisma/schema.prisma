@@ -55,10 +55,13 @@ model Template {
 model Contract {
   id            Int      @id @default(autoincrement())
   templateId    Int
+  demoSessionId Int?
   data          Json
   generatedText String
   createdAt     DateTime @default(now())
-  template      Template @relation(fields: [templateId], references: [id])
+
+  template    Template     @relation(fields: [templateId], references: [id])
+  demoSession DemoSession? @relation(fields: [demoSessionId], references: [id])
 }
 
 model Evidence {
@@ -71,8 +74,9 @@ model Evidence {
 }
 
 model DemoSession {
-  id        Int      @id @default(autoincrement())
-  sessionId String   @unique
+  id        Int        @id @default(autoincrement())
+  sessionId String     @unique
   expiresAt DateTime
-  createdAt DateTime @default(now())
+  createdAt DateTime   @default(now())
+  contracts Contract[]
 }
