@@ -74,9 +74,11 @@ model Evidence {
 }
 
 model DemoSession {
-  id        Int        @id @default(autoincrement())
-  sessionId String     @unique
+  id        Int      @id @default(autoincrement())
+  sessionId String   @unique
   expiresAt DateTime
-  createdAt DateTime   @default(now())
+  createdAt DateTime @default(now())
+  pdfCount  Int      @default(0)
+
   contracts Contract[]
 }

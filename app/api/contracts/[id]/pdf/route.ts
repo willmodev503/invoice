@@ -1,5 +1,6 @@
 import { prisma } from '@/app/lib/prisma';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { getDemoSession } from '@/app/lib/demoSession';
 
 export async function GET(
   request: Request,
@@ -14,6 +15,17 @@ export async function GET(
   if (!contract) {
     return new Response('Not found', { status: 404 });
   }
+
+  const demoSession = await getDemoSession();
+
+if (demoSession) {
+  if (demoSession.pdfCount >= 2) {
+    return new Response(
+      'Has alcanzado el límite de 2 PDFs de la demo.',
+      { status: 403 }
+    );
+  }
+}
 
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage([595, 842]); // A4
@@ -111,6 +123,19 @@ y -= 80;
   });
 
   const pdfBytes = await pdfDoc.save();
+
+  if (demoSession) {
+  await prisma.demoSession.update({
+    where: {
+      id: demoSession.id,
+    },
+    data: {
+      pdfCount: {
+        increment: 1,
+      },
+    },
+  });
+}
 
   return new Response(new Uint8Array(pdfBytes), {
     headers: {

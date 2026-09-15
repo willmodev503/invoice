@@ -109,12 +109,12 @@ export default async function ContractsTable() {
                  {contract.template.name}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                   <p
-    //href={`/api/contracts/${contract.id}`}
-   // className="text-blue-500 underline"
+                   <a
+    href={`/api/contracts/${contract.id}`}
+   className="text-blue-500 underline"
   >
     {contract.generatedText.slice(0, 50)}...
-  </p>
+  </a>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                   {new Date(contract.createdAt).toLocaleString()}
