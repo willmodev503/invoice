@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
+import { getDemoSession } from "@/app/lib/demoSession";
 
 export async function POST(req: Request) {
+  const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    return NextResponse.json(
+      { error: "La demo no permite subir archivos." },
+      { status: 403 }
+    );
+  }
+
   const formData = await req.formData();
   const file = formData.get("file") as File;
 

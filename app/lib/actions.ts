@@ -34,6 +34,11 @@ export async function updateTemplate(id: number, name: string, content: string) 
 
 // 🗑 borrar template (con protección)
 export async function deleteTemplate(id: number) {
+    const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    throw new Error("La demo no permite eliminar templates.");
+  }
   const contracts = await prisma.contract.count({
     where: { templateId: id },
   });
@@ -41,6 +46,8 @@ export async function deleteTemplate(id: number) {
   if (contracts > 0) {
     throw new Error("No puedes borrar un template con contratos");
   }
+
+  
 
   await prisma.template.delete({
     where: { id },
@@ -89,6 +96,13 @@ export async function createContract(
 
 // 🗑 borrar contrato
 export async function deleteContract(id: number) {
+ const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    throw new Error("La demo no permite eliminar contratos.");
+  }
+
+
   await prisma.contract.delete({
     where: { id },
   });
@@ -225,6 +239,13 @@ export async function deleteInvoice(id: string) {
 //evidencias
 
 export async function deleteEvidence(id: number) {
+
+    const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    throw new Error("La demo no permite eliminar evidencias.");
+  }
+
   await prisma.evidence.delete({
     where: {
       id,

@@ -52,9 +52,9 @@ export function DeleteContractButton({ id }: { id: number }) {
       toast.success("Contrato eliminado ✅");
 
       router.refresh(); // 🔥 magia aquí
-    } catch (error) {
-      toast.error("Error ❌");
-    }
+} catch (error: any) {
+  toast.error(error.message || "Error ❌");
+}     
   }
 
   return (

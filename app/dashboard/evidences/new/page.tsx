@@ -31,9 +31,12 @@ export default function UploadEvidence() {
         body: formData,
       });
 
-      const uploadData = await uploadRes.json();
+    const uploadData = await uploadRes.json();
 
-      if (!uploadRes.ok) throw new Error("Error subiendo archivo");
+if (!uploadRes.ok) {
+  toast.error(uploadData.error || "Error subiendo archivo");
+  return;
+}
 
       // 2️⃣ guardar en DB
       const saveRes = await fetch("/api/evidences", {
