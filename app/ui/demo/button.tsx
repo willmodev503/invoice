@@ -17,6 +17,7 @@ export default function DemoButton() {
 
   return (
     <button
+      type="button"
       onClick={handleDemo}
       className="bg-yellow-500 text-brown px-3 py-1 rounded"
     >
