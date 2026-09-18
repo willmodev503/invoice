@@ -92,16 +92,30 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
-    const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+  const router = useRouter();
+
+  async function handleDelete() {
+    const ok = confirm("¿Eliminar invoice?");
+    if (!ok) return;
+
+    try {
+      await deleteInvoice(id);
+
+      toast.success("Invoice eliminado ✅");
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error.message || "Error ❌");
+    }
+  }
 
   return (
-       <form action={deleteInvoiceWithId}>
-
-      <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
-        <span className="sr-only">Delete</span>
-        <TrashIcon className="w-5" />
-      </button>
-    </form>
+    <button
+      onClick={handleDelete}
+      className="rounded-md border p-2 hover:bg-gray-100"
+    >
+      <span className="sr-only">Delete</span>
+      <TrashIcon className="w-5" />
+    </button>
   );
 }
 

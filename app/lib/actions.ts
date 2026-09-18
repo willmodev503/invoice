@@ -197,7 +197,17 @@ const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 export async function updateInvoice(
   id: string, 
   prevState: State,
-  formData: FormData) {
+  formData: FormData) 
+  {
+const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    return {
+      errors: {},
+      message: "La demo no permite editar invoices.",
+    };
+  }
+
 const validatedFields = UpdateInvoice.safeParse({
     customerId: formData.get('customerId'),
     amount: formData.get('amount'),
@@ -230,7 +240,11 @@ const validatedFields = UpdateInvoice.safeParse({
 
 export async function deleteInvoice(id: string) {
   //  throw new Error('Failed to Delete Invoice');
-    
+     const demoSession = await getDemoSession();
+
+  if (demoSession) {
+    throw new Error("La demo no permite eliminar invoices.");
+  }
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath('/dashboard/invoices');
 }
