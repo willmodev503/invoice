@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 
 async function handleDemo() {
   const response = await fetch("/api/demo", {
@@ -11,6 +12,8 @@ async function handleDemo() {
   document.cookie = `demoSessionId=${data.sessionId}; path=/`;
 
   console.log("Demo session:", data.sessionId);
+
+    window.location.href = "/dashboard";
 }
 
 export default function DemoButton() {

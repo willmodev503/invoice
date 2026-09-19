@@ -2,7 +2,7 @@ import'./globals.css';
 import { inter } from '@/app/ui/fonts';
 import { Metadata } from 'next';
 import ThemeProvider from './theme-provider';
- 
+ import { Toaster } from "react-hot-toast";
 export const metadata: Metadata = {
   title: {
     template: 'Acme Dashboard | %s | ',
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>{children}  <Toaster position="top-right" /></body>
     </html>
   );
 }

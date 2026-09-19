@@ -12,10 +12,25 @@ import { useActionState } from 'react';
 import { authenticate } from '@/app/lib/actions';
 import { useSearchParams } from 'next/navigation';
 import DemoButton from './demo/button';
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+
+
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+
+const demoExpired = searchParams.get("demoExpired");
+
+useEffect(() => {
+  if (demoExpired === "true") {
+    toast.error("La sesión de demostración ha expirado.", {
+      id: "demo-expired",
+    });
+  }
+}, [demoExpired]);
+
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
@@ -103,6 +118,7 @@ export default function LoginForm() {
             <p>{errorMessage}</p>
           </div>
         )}
+        
       </form>
     </div>
   );

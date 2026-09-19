@@ -5,7 +5,7 @@ export async function POST() {
   const sessionId = randomUUID();
 
   const expiresAt = new Date(
-    Date.now() + 10 * 60 * 1000
+    Date.now() + .30 * 60 * 1000
   );
 
   const session = await prisma.demoSession.create({
