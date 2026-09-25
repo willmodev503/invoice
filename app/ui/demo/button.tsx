@@ -9,7 +9,7 @@ async function handleDemo() {
 
   const data = await response.json();
 
-  document.cookie = `demoSessionId=${data.sessionId}; path=/`;
+ document.cookie = `demoSessionId=${data.sessionId}; path=/; max-age=600; SameSite=Lax`;
 
   console.log("Demo session:", data.sessionId);
 
